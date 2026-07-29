@@ -1,0 +1,46 @@
+# .github/workflows/daily.yml
+# 毎日 01:00（日本時間）に収集して GitHub Pages に公開する
+name: eスポーツ公募レーダー 日次更新
+
+on:
+  schedule:
+    - cron: "0 16 * * *"      # UTC 16:00 = JST 翌 01:00
+  workflow_dispatch:           # 手動実行も可
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 収集を実行
+        run: python collect.py
+
+      - name: data.json をコミット
+        run: |
+          git config user.name  "esports-koubo-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data.json
+          git diff --staged --quiet || git commit -m "chore: 公募データ更新 $(date -u -d '+9 hours' +%Y-%m-%d)"
+          git push
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: collect
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4
