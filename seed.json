@@ -1,0 +1,308 @@
+{
+  "items": [
+    {
+      "id": "toyama-kankeijinko-r8",
+      "title": "eスポーツ関係人口創出事業補助金（令和8年度）",
+      "org": "富山県 地方創生局デジタル化推進室デジタル戦略課",
+      "pref": "富山県",
+      "kind": "補助金",
+      "status": "open",
+      "published": "2026-06-17",
+      "deadline": "2026-12-25",
+      "scale": "上限50〜300万円（イベント参加者数に応じ4段階）／補助率1/3、要件充足で1/2",
+      "summary": "県内で開催するeスポーツイベントを通じて県外からの集客を目指す取組を支援する補助金。申請主体は市町村を構成員に含む実行委員会等で、事業者単独では申請できない点に注意。要件は「地域の観光資源を活用」「県外のeスポーツイベントと連携」「県外在住者へのデジタル情報発信」の3つすべて。県外在住の現地来訪者・オンライン参加者が30名以上いれば補助率が1/2に上がる。申請額が予算に達した時点で受付終了。",
+      "url": "https://www.pref.toyama.jp/140511/esports.html",
+      "subs": [
+        {
+          "label": "交付要綱（PDF）",
+          "url": "https://www.pref.toyama.jp/documents/25848/youkou.pdf"
+        }
+      ],
+      "verify": "本文取得で確認（2026-07-29）"
+    },
+    {
+      "id": "mext-soip-r8",
+      "title": "令和8年度 スポーツ産業の成長促進事業「スポーツオープンイノベーションプラットフォーム推進事業」公募",
+      "org": "スポーツ庁（事務局：野村総合研究所／eiicon）",
+      "pref": "全国",
+      "kind": "国事業",
+      "status": "open",
+      "published": "2026-07-21",
+      "deadline": "2026-08-21",
+      "scale": "採択後にワークショップ・インキュベーション伴走支援・事業戦略メンタリングを提供",
+      "summary": "スポーツ団体（リーグ・クラブ・競技団体等）が他産業と連携して新規事業を創出する共創プロジェクトを支援する枠。応募主体はスポーツ団体で、パートナー企業と組んだ応募も可。eスポーツ団体や、eスポーツ部門を持つクラブ・リーグにとって直接の応募対象になり得る。締切は8月21日17時。姉妹枠「スポーツ×テクノロジー活用展開事業」（原則リーグ団体対象）は締切8月14日17時。",
+      "url": "https://www.mext.go.jp/sports/b_menu/sports/jsa_00089.html",
+      "subs": [
+        {
+          "label": "スポーツ庁 公募情報 一覧",
+          "url": "https://www.mext.go.jp/sports/b_menu/boshu/index.htm"
+        }
+      ],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "ome-esports-taikai",
+      "title": "青梅市eスポーツ大会実施事業業務委託 公募型プロポーザル",
+      "org": "東京都青梅市 教育委員会スポーツ推進課／総務部総務契約課",
+      "pref": "東京都",
+      "kind": "委託",
+      "status": "check",
+      "published": null,
+      "deadline": null,
+      "scale": "—",
+      "summary": "eスポーツを活用したイベント開催のため委託事業者を公募型プロポーザル方式で募集。第2期青梅市スポーツ推進計画に基づき「こどもの居場所創出」「新たな生涯スポーツの推進」「多世代交流・共生社会」を狙いに掲げる。掲載日・提出期限・参加資格は自動取得がブロックされ機械確認できていないため、必ずブラウザで原典を開いて確認すること。",
+      "url": "https://www.city.ome.tokyo.jp/site/omesports/123169.html",
+      "subs": [
+        {
+          "label": "総務契約課 プロポーザル一覧",
+          "url": "https://www.city.ome.tokyo.jp/soshiki/6/123233.html"
+        }
+      ],
+      "verify": "URLは検索インデックスで確認。締切等は未確認（要目視）"
+    },
+    {
+      "id": "taku-r8-result",
+      "title": "令和8年度 多久市eスポーツイベント及び体験会実施業務委託 公募型プロポーザル（審査結果公表）",
+      "org": "佐賀県多久市 総合政策課企画係",
+      "pref": "佐賀県",
+      "kind": "委託",
+      "status": "closed",
+      "published": "2026-07-24",
+      "deadline": "2026-05-27",
+      "scale": "—",
+      "summary": "募集期間は令和8年5月14日〜5月27日。7月24日に審査結果（PDF）が公表された。子どもから高齢者までを対象にeスポーツ体験会を実施し市内での普及と地域活性化につなげる事業で、単年度・毎年度公募の型。次年度は5月中旬の公表が濃厚なため、4月末からの重点監視対象。",
+      "url": "https://www.city.taku.lg.jp/soshiki/14/37134.html",
+      "subs": [
+        {
+          "label": "公募本体ページ",
+          "url": "https://www.city.taku.lg.jp/soshiki/14/36559.html"
+        }
+      ],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "gunma-fes-r8",
+      "title": "「ぐんまeスポーツフェス（仮称）」開催業務 公募型プロポーザル",
+      "org": "群馬県 ｅスポーツ・クリエイティブ推進課",
+      "pref": "群馬県",
+      "kind": "委託",
+      "status": "closed",
+      "published": "2026-06-15",
+      "deadline": "2026-07-17",
+      "scale": "—",
+      "summary": "参加申込は令和8年6月15日〜7月17日正午。6月17日に仕様説明会を実施し、企画提案要領・仕様書・手配済み会場の参考資料を公開。群馬県はeスポーツ専任課を置く数少ない県で、フェス以外にもGUNMA LEAGUE、eスポーツ体験会キャラバンなど発注が継続的に出る。課のページを定点監視するのが効率的。",
+      "url": "https://www.pref.gunma.jp/site/nyuusatsu/756825.html",
+      "subs": [
+        {
+          "label": "ｅスポーツ・クリエイティブ推進課",
+          "url": "https://www.pref.gunma.jp/soshiki/153/"
+        }
+      ],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "osaka-daikibo-r8",
+      "title": "大阪府大規模eスポーツ大会開催支援補助金（令和8年度）",
+      "org": "大阪府 府民文化部都市魅力創造局魅力づくり推進課",
+      "pref": "大阪府",
+      "kind": "補助金",
+      "status": "closed",
+      "published": "2026-04-15",
+      "deadline": "2026-05-15",
+      "scale": "—",
+      "summary": "令和8年度中に開催される大規模eスポーツ大会が対象。申請受付は4月15日〜5月15日17時必着で、持参または郵送のみ（電子メール不可）。複数年度にまたがる事業は対象外。年度当初に公募が立つ型なので、次年度は3月下旬から要領公表を張っておくのが有効。",
+      "url": "https://www.pref.osaka.lg.jp/o070080/e-sports_hojokin.html",
+      "subs": [
+        {
+          "label": "大阪府 eスポーツ施策トップ",
+          "url": "https://www.pref.osaka.lg.jp/o070080/e-sports.html"
+        }
+      ],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "saitama-event-annual",
+      "title": "埼玉県eスポーツイベント運営業務委託（企画提案競技）※例年8月公表枠",
+      "org": "埼玉県 スポーツ振興課／県民総合スポーツ大会埼玉県実行委員会",
+      "pref": "埼玉県",
+      "kind": "委託",
+      "status": "watch",
+      "published": null,
+      "deadline": null,
+      "scale": "—",
+      "summary": "2025年度は8月18日に募集要領を公表し、質問受付8月22日、応募届9月5日、企画提案9月10日、プレゼン審査9月中旬という日程だった。イベント本体とトレーニングキャンプの2本立てで出る年もある。2026年度分は本日時点で未公表だが、例年どおりなら8月中の公表が濃厚。今週から日次で見に行く価値がある枠。",
+      "url": "https://www.pref.saitama.lg.jp/a0312/esports/info.html",
+      "subs": [
+        {
+          "label": "2025年度の実施要領ページ（日程の参考）",
+          "url": "https://www.pref.saitama.lg.jp/a0312/esports/esports_event2025.html"
+        }
+      ],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "hirokawa-community",
+      "title": "eスポーツによる地域コミュニティ活性化事業業務委託 公募型プロポーザル",
+      "org": "福岡県広川町",
+      "pref": "福岡県",
+      "kind": "委託",
+      "status": "closed",
+      "published": "2026-01-26",
+      "deadline": "2026-02-02",
+      "scale": "3か年で上限9,900,000円（令和8〜10年度に各330万円）",
+      "summary": "委託期間が令和8年4月1日〜令和11年3月31日の3か年という、町村規模としては珍しい複数年契約。実施要領公表1月26日、質問受付〜2月2日正午、契約締結は3月下旬。単年度の体験会案件と違い、腰を据えた運営体制を求める設計になっている。同種の複数年案件は年度末（1〜2月）に出やすい。",
+      "url": "https://www.town.hirokawa.fukuoka.jp/shigoto_sangyo/nyusatsu_keiyaku/1/6607.html",
+      "subs": [],
+      "verify": "検索インデックスで確認（2026-07-29）※表の日付は質問受付期限"
+    },
+    {
+      "id": "hakui-r7",
+      "title": "令和7年度 羽咋市eスポーツ推進業務委託 公募型プロポーザル（優先交渉権者決定）",
+      "org": "石川県羽咋市 産業建設部商工観光課",
+      "pref": "石川県",
+      "kind": "委託",
+      "status": "closed",
+      "published": null,
+      "deadline": null,
+      "scale": "—",
+      "summary": "単年度のeスポーツ推進業務委託で、優先交渉権者がすでに決定済み。年度ごとに立て直す型の事業とみられるため、令和8年度以降の同名案件の掲載を監視対象に入れておく。",
+      "url": "https://www.city.hakui.lg.jp/soshiki/sangyoukensetsubu/syoukoukankouka/5/15517.html",
+      "subs": [],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "nagaoka-event-hojo",
+      "title": "eスポーツイベント等の開催経費補助",
+      "org": "新潟県長岡市",
+      "pref": "新潟県",
+      "kind": "補助金",
+      "status": "check",
+      "published": null,
+      "deadline": null,
+      "scale": "—",
+      "summary": "市の「募集」カテゴリに掲載されているイベント開催経費の補助制度。対象要件・補助率・受付期間は原典での確認が必要。長岡市は市民向けの募集情報を一箇所に集約しているため、市の募集一覧ごと監視対象にすると取りこぼしが減る。",
+      "url": "https://www.city.nagaoka.niigata.jp/bosyu/esports.html",
+      "subs": [],
+      "verify": "URLは検索インデックスで確認。要件・期間は未確認（要目視）"
+    },
+    {
+      "id": "okayama-sangyo",
+      "title": "岡山市eスポーツ産業振興事業補助金",
+      "org": "岡山市",
+      "pref": "岡山県",
+      "kind": "補助金",
+      "status": "check",
+      "published": null,
+      "deadline": null,
+      "scale": "—",
+      "summary": "eスポーツを「産業振興」の文脈で扱う数少ない市の補助制度。イベント開催補助ではなく事業者側の産業振興を目的とする建て付けのため、他自治体の大会運営補助とは対象経費の考え方が異なる可能性がある。受付期間・対象経費は原典で確認のこと。",
+      "url": "https://www.city.okayama.jp/jigyosha/0000030386.html",
+      "subs": [],
+      "verify": "URLは検索インデックスで確認。要件・期間は未確認（要目視）"
+    },
+    {
+      "id": "yubetsu-machizukuri",
+      "title": "eスポーツを通じたまちづくり（交付金活用の継続事業）",
+      "org": "北海道湧別町",
+      "pref": "北海道",
+      "kind": "定点",
+      "status": "watch",
+      "published": null,
+      "deadline": null,
+      "scale": "新しい地方経済・生活環境創生交付金を活用",
+      "summary": "体験会・ワークショップ・大会の企画運営を株式会社NTTe-Sportsに業務委託して実施。高校のeスポーツ部立ち上げから始まり、機材整備・体験会・湧別e-Sportsフェスタへと段階的に広がってきた交付金ベースの継続事業。委託先が固定化している案件だが、交付金の年度更新に合わせて公募が立つ可能性があるため定点で押さえておく。",
+      "url": "https://www.town.yubetsu.lg.jp/administration/town/detail.html?content=1224",
+      "subs": [],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    },
+    {
+      "id": "tokyo-epara",
+      "title": "デジタル技術を活用した障害者のスポーツ参加促進事業（eパラスポーツ事業）",
+      "org": "東京都 スポーツ推進本部",
+      "pref": "東京都",
+      "kind": "定点",
+      "status": "watch",
+      "published": null,
+      "deadline": null,
+      "scale": "—",
+      "summary": "参加を希望する障害者福祉施設等を募集する形式の事業で、東京eスポーツフェスタと連動した「つながる!eスポTOKYO」なども実施。事業者向けの委託公募とは別枠だが、都のeスポーツ関連予算の動きを読む上で有用な定点。募集要項は年度ごとに更新される。",
+      "url": "https://www.sports-tokyo-info.metro.tokyo.lg.jp/seisaku/forthedisabled_digital.html",
+      "subs": [],
+      "verify": "検索インデックスで確認（2026-07-29）"
+    }
+  ],
+  "sources": [
+    {
+      "k": "横断検索 / API",
+      "n": "官公需情報ポータルサイト（中小企業庁）",
+      "u": "https://www.kkj.go.jp/s/",
+      "d": "国・独法・地方公共団体の入札情報を横断検索。検索APIが公開されており、キーワード「eスポーツ」等で全国分を一括取得できる。巡回の主力。"
+    },
+    {
+      "k": "横断検索",
+      "n": "調達ポータル（デジタル庁）",
+      "u": "https://www.p-portal.go.jp/pps-web-biz/UZA01/OZA0101",
+      "d": "各府省の調達案件。国発注の補完として日次で確認する。"
+    },
+    {
+      "k": "府省",
+      "n": "スポーツ庁 公募情報",
+      "u": "https://www.mext.go.jp/sports/b_menu/boshu/index.htm",
+      "d": "スポーツ産業成長促進・SOIP等。eスポーツ単独の枠は少ないが応募可能な枠が混ざる。"
+    },
+    {
+      "k": "専任部署",
+      "n": "群馬県 ｅスポーツ・クリエイティブ推進課",
+      "u": "https://www.pref.gunma.jp/soshiki/153/",
+      "d": "全国で唯一クラスのeスポーツ専任課。発注頻度が最も高い自治体のひとつ。"
+    },
+    {
+      "k": "専任施策",
+      "n": "大阪府 eスポーツ",
+      "u": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
+      "d": "大規模大会開催支援補助金など。年度当初に公募が立つ。"
+    },
+    {
+      "k": "専任施策",
+      "n": "埼玉県 eスポーツ",
+      "u": "https://www.pref.saitama.lg.jp/a0312/esports/info.html",
+      "d": "イベント／トレーニングキャンプの企画提案競技を例年夏に公表。"
+    },
+    {
+      "k": "専任施策",
+      "n": "沖縄eスポーツ",
+      "u": "https://okinawa-e-sports.com/",
+      "d": "県のeスポーツ推進関連情報。県庁ドメイン外のため横断検索に載りにくく、直接巡回が必要。"
+    },
+    {
+      "k": "継続事業",
+      "n": "北海道湧別町 eスポーツを通じたまちづくり",
+      "u": "https://www.town.yubetsu.lg.jp/administration/town/detail.html?content=1224",
+      "d": "交付金ベースの町村事例。同型の町村案件を探す際のモデルケース。"
+    },
+    {
+      "k": "例年枠",
+      "n": "佐賀県多久市 総合政策課",
+      "u": "https://www.city.taku.lg.jp/soshiki/14/",
+      "d": "eスポーツイベント・体験会実施業務を毎年度公募。令和8年度は5月14日〜5月27日募集、7月24日結果公表。4月末から重点監視。"
+    },
+    {
+      "k": "例年枠",
+      "n": "石川県羽咋市 商工観光課",
+      "u": "https://www.city.hakui.lg.jp/soshiki/sangyoukensetsubu/syoukoukankouka/5/15517.html",
+      "d": "eスポーツ推進業務委託を単年度で公募。年度ごとに立て直す型のため次年度分の掲載を監視。"
+    },
+    {
+      "k": "例年枠",
+      "n": "福岡県広川町 入札・契約",
+      "u": "https://www.town.hirokawa.fukuoka.jp/shigoto_sangyo/nyusatsu_keiyaku/1/6607.html",
+      "d": "令和8〜10年度の3か年・上限990万円で地域コミュニティ活性化事業を委託。複数年案件は1〜2月に出やすい。"
+    },
+    {
+      "k": "参考",
+      "n": "日本eスポーツ連合（JeSU）",
+      "u": "https://jesu.or.jp/",
+      "d": "全国都道府県対抗eスポーツ選手権など、自治体側の予算が立つきっかけになる動きを先読みできる。"
+    }
+  ]
+}
