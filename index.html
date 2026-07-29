@@ -1,0 +1,567 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eスポーツ公募レーダー｜全国自治体・官公庁</title>
+<style>
+  :root{
+    --paper:#EDF0F5;
+    --card:#FFFFFF;
+    --ink:#0F1622;
+    --ink2:#5B6779;
+    --ink3:#8A94A4;
+    --rule:#CBD4E0;
+    --indigo:#1F3A87;
+    --indigo-d:#16265A;
+    --open:#0E6B48;
+    --open-bg:#DCEFE5;
+    --soon:#9A5B04;
+    --soon-bg:#FBEBD3;
+    --closed:#6B7280;
+    --closed-bg:#E6E9EE;
+    --check:#8E2F2F;
+    --check-bg:#F7E3E3;
+    --mono: ui-monospace,"SFMono-Regular","Roboto Mono",Menlo,Consolas,monospace;
+    --jp: "Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP","Meiryo",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--jp);
+       font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+  /* ── masthead ─────────────────────────── */
+  header.mast{border-bottom:2px solid var(--ink);background:var(--paper)}
+  .mast-in{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px;padding:26px 0 14px}
+  .mark{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--indigo);
+        border:1px solid var(--indigo);padding:3px 8px;border-radius:2px}
+  h1{margin:0;font-size:27px;letter-spacing:.01em;font-weight:800;line-height:1.25}
+  h1 small{display:block;font-size:12px;font-weight:500;color:var(--ink2);letter-spacing:.06em;margin-top:4px}
+  .stamp{margin-left:auto;text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink2);line-height:1.6}
+  .stamp b{color:var(--ink);font-size:13px}
+
+  /* ── deadline board (signature) ───────── */
+  .board{background:var(--indigo-d);color:#fff;border-radius:3px;margin:22px 0 0;overflow:hidden;
+         box-shadow:0 12px 28px -18px rgba(15,22,34,.7)}
+  .board-hd{display:flex;align-items:center;gap:12px;padding:12px 18px;
+            border-bottom:1px solid rgba(255,255,255,.18)}
+  .board-hd h2{margin:0;font-size:14px;letter-spacing:.14em;font-weight:700}
+  .blip{width:8px;height:8px;border-radius:50%;background:#F0B429;
+        box-shadow:0 0 0 0 rgba(240,180,41,.6);animation:pulse 2.4s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(240,180,41,0)}100%{box-shadow:0 0 0 0 rgba(240,180,41,0)}}
+  .board-hd span{margin-left:auto;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.6)}
+  .brow{display:grid;grid-template-columns:88px 1fr 132px;gap:14px;align-items:center;
+        padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.09);text-decoration:none;color:inherit}
+  .brow:last-child{border-bottom:0}
+  .brow:hover,.brow:focus-visible{background:rgba(255,255,255,.07);outline:none}
+  .days{font-family:var(--mono);text-align:right;line-height:1}
+  .days b{display:block;font-size:30px;font-weight:700;letter-spacing:-.02em}
+  .days i{font-style:normal;font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.55)}
+  .days.warn b{color:#FFC94D}
+  .bttl{font-size:14px;font-weight:600;line-height:1.5}
+  .borg{font-size:11.5px;color:rgba(255,255,255,.62);margin-top:2px}
+  .bdate{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.8);text-align:right}
+  .board-empty{padding:20px 18px;font-size:13px;color:rgba(255,255,255,.7)}
+
+  /* ── topics ───────────────────────────── */
+  .topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:12px;margin:18px 0 4px}
+  .topic{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--indigo);
+         border-radius:2px;padding:13px 15px}
+  .topic.new{border-left-color:#0E6B48}
+  .topic.watch{border-left-color:#9A5B04}
+  .topic .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--ink2)}
+  .topic h3{margin:5px 0 4px;font-size:14px;line-height:1.5}
+  .topic p{margin:0;font-size:12.5px;color:var(--ink2);line-height:1.65}
+  .topic a{color:var(--indigo);font-size:12.5px}
+
+  /* ── controls ─────────────────────────── */
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+       padding:16px 0 12px;border-bottom:1px solid var(--rule);margin-top:26px}
+  .bar h2{margin:0 10px 0 0;font-size:16px;font-weight:800;letter-spacing:.02em}
+  .chip{font:inherit;font-size:12px;padding:5px 11px;border:1px solid var(--rule);background:var(--card);
+        border-radius:99px;cursor:pointer;color:var(--ink2)}
+  .chip[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:#fff;font-weight:600}
+  .chip:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+  input[type=search]{font:inherit;font-size:13px;padding:6px 11px;border:1px solid var(--rule);
+        border-radius:2px;background:var(--card);min-width:180px;margin-left:auto;color:var(--ink)}
+  .count{font-family:var(--mono);font-size:11.5px;color:var(--ink2);padding:9px 0}
+
+  /* ── listing ──────────────────────────── */
+  ol.list{list-style:none;margin:0;padding:0}
+  li.item{background:var(--card);border:1px solid var(--rule);border-radius:2px;
+          padding:16px 18px;margin-bottom:10px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--mono);
+        font-size:10.5px;letter-spacing:.06em;color:var(--ink3)}
+  .tag{padding:2px 7px;border-radius:2px;font-weight:700;letter-spacing:.08em}
+  .t-open{background:var(--open-bg);color:var(--open)}
+  .t-soon{background:var(--soon-bg);color:var(--soon)}
+  .t-closed{background:var(--closed-bg);color:var(--closed)}
+  .t-check{background:var(--check-bg);color:var(--check)}
+  .t-kind{background:#E7ECF6;color:var(--indigo)}
+  li.item h3{margin:8px 0 3px;font-size:16.5px;line-height:1.5;font-weight:700}
+  .org{font-size:12.5px;color:var(--ink2)}
+  .sum{margin:9px 0 0;font-size:13.5px;color:#26303F;line-height:1.8}
+  dl.facts{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:11px 0 0;
+           font-size:12.5px;border-top:1px dotted var(--rule);padding-top:9px}
+  dl.facts dt{color:var(--ink3);font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding-top:3px}
+  dl.facts dd{margin:0}
+  .links{margin-top:11px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+  .links a{font-size:13px;color:var(--indigo);text-decoration:none;border-bottom:1px solid rgba(31,58,135,.35);
+           padding-bottom:1px;word-break:break-all}
+  .links a:hover,.links a:focus-visible{border-bottom-color:var(--indigo);outline:none;background:#E7ECF6}
+  .verify{font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+
+  /* ── sources & method ─────────────────── */
+  section.blk{margin-top:34px}
+  section.blk h2{font-size:16px;font-weight:800;margin:0 0 4px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+  .srcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 26px;margin:0;padding:0;list-style:none}
+  .srcs li{padding:11px 0;border-bottom:1px dotted var(--rule);font-size:13px}
+  .srcs .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink3);display:block}
+  .srcs a{color:var(--indigo);text-decoration:none;word-break:break-all}
+  .srcs a:hover{text-decoration:underline}
+  .srcs em{display:block;font-style:normal;font-size:11.5px;color:var(--ink2);margin-top:2px}
+  .note{font-size:12.5px;color:var(--ink2);background:var(--card);border:1px solid var(--rule);
+        border-left:3px solid var(--ink3);padding:13px 15px;margin-top:14px;line-height:1.8}
+  footer{margin:40px 0 60px;padding-top:16px;border-top:2px solid var(--ink);
+         font-size:11.5px;color:var(--ink2);line-height:1.8}
+  @media (max-width:640px){
+    h1{font-size:21px}
+    .brow{grid-template-columns:64px 1fr;gap:10px}
+    .bdate{grid-column:2;text-align:left;font-size:11px}
+    .days b{font-size:24px}
+    .stamp{margin-left:0;text-align:left}
+    input[type=search]{margin-left:0;width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){.blip{animation:none}}
+</style>
+
+<header class="mast">
+  <div class="wrap mast-in">
+    <div>
+      <span class="mark">E-SPORTS × 公 共 調 達</span>
+      <h1>eスポーツ公募レーダー
+        <small>全国の都道府県・市区町村・官公庁のeスポーツ関連公募を一覧化</small>
+      </h1>
+    </div>
+    <div class="stamp">
+      最終更新<br><b id="updated">—</b><br>
+      <span id="src-mode">seed data</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ファーストビュー：締切ボード -->
+  <div class="board">
+    <div class="board-hd">
+      <span class="blip" aria-hidden="true"></span>
+      <h2>締切ボード</h2>
+      <span>受付中・締切日が判明している案件のみ</span>
+    </div>
+    <div id="board"></div>
+  </div>
+
+  <!-- ファーストビュー：トピック -->
+  <div class="topics" id="topics"></div>
+
+  <!-- 案件一覧 -->
+  <div class="bar">
+    <h2>公募案件</h2>
+    <button class="chip" data-f="all" aria-pressed="true">すべて</button>
+    <button class="chip" data-f="open" aria-pressed="false">受付中</button>
+    <button class="chip" data-f="check" aria-pressed="false">要確認</button>
+    <button class="chip" data-f="watch" aria-pressed="false">例年枠</button>
+    <button class="chip" data-f="closed" aria-pressed="false">終了（30日以内）</button>
+    <input type="search" id="q" placeholder="機関名・キーワードで絞り込む" aria-label="キーワード検索">
+  </div>
+  <div class="count" id="count"></div>
+  <ol class="list" id="list"></ol>
+
+  <!-- 定点監視ソース -->
+  <section class="blk">
+    <h2>定点監視ソース</h2>
+    <p style="font-size:13px;color:var(--ink2);margin:10px 0 4px">
+      毎日の巡回はこの順で行う。①横断検索で網を張り、②eスポーツ専任部署のある自治体だけを直接見に行く。全国1,788自治体を個別に叩く必要はない。
+    </p>
+    <ul class="srcs" id="srcs"></ul>
+  </section>
+
+  <!-- 更新の仕組み -->
+  <section class="blk">
+    <h2>更新の仕組み</h2>
+    <div class="note" id="howto"></div>
+  </section>
+
+  <footer class="wrap" style="padding:16px 0 0">
+    掲載情報は各発注機関の公表内容をもとに整理したものです。応募にあたっては必ず原典（参考リンク先）で最新の要領・期限・資格要件をご確認ください。<br>
+    横断検索には中小企業庁「官公需情報ポータルサイト」の検索APIを利用しています。<a href="https://www.kkj.go.jp/s/" style="color:var(--indigo)">https://www.kkj.go.jp/s/</a>
+  </footer>
+</main>
+
+<script>
+/* ── 種データ（collector が data.json を出力すればそちらを優先） ───────── */
+const SEED = {
+  updated: "2026-07-29",
+  items: [
+    {
+      id:"toyama-kankeijinko-r8",
+      title:"eスポーツ関係人口創出事業補助金（令和8年度）",
+      org:"富山県 地方創生局デジタル化推進室デジタル戦略課",
+      pref:"富山県", kind:"補助金", status:"open",
+      published:"2026-06-17", deadline:"2026-12-25",
+      scale:"上限50〜300万円（イベント参加者数に応じ4段階）／補助率1/3、要件充足で1/2",
+      summary:"県内で開催するeスポーツイベントを通じて県外からの集客を目指す取組を支援する補助金。申請主体は市町村を構成員に含む実行委員会等で、事業者単独では申請できない点に注意。要件は「地域の観光資源を活用」「県外のeスポーツイベントと連携」「県外在住者へのデジタル情報発信」の3つすべて。県外在住の現地来訪者・オンライン参加者が30名以上いれば補助率が1/2に上がる。申請額が予算に達した時点で受付終了。",
+      url:"https://www.pref.toyama.jp/140511/esports.html",
+      subs:[{label:"交付要綱（PDF）",url:"https://www.pref.toyama.jp/documents/25848/youkou.pdf"}],
+      verify:"本文取得で確認（2026-07-29）"
+    },
+    {
+      id:"mext-soip-r8",
+      title:"令和8年度 スポーツ産業の成長促進事業「スポーツオープンイノベーションプラットフォーム推進事業」公募",
+      org:"スポーツ庁（事務局：野村総合研究所／eiicon）",
+      pref:"全国", kind:"国事業", status:"open",
+      published:"2026-07-21", deadline:"2026-08-21",
+      scale:"採択後にワークショップ・インキュベーション伴走支援・事業戦略メンタリングを提供",
+      summary:"スポーツ団体（リーグ・クラブ・競技団体等）が他産業と連携して新規事業を創出する共創プロジェクトを支援する枠。応募主体はスポーツ団体で、パートナー企業と組んだ応募も可。eスポーツ団体や、eスポーツ部門を持つクラブ・リーグにとって直接の応募対象になり得る。締切は8月21日17時。姉妹枠「スポーツ×テクノロジー活用展開事業」（原則リーグ団体対象）は締切8月14日17時。",
+      url:"https://www.mext.go.jp/sports/b_menu/sports/jsa_00089.html",
+      subs:[{label:"スポーツ庁 公募情報 一覧",url:"https://www.mext.go.jp/sports/b_menu/boshu/index.htm"}],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"ome-esports-taikai",
+      title:"青梅市eスポーツ大会実施事業業務委託 公募型プロポーザル",
+      org:"東京都青梅市 教育委員会スポーツ推進課／総務部総務契約課",
+      pref:"東京都", kind:"委託", status:"check",
+      published:null, deadline:null,
+      scale:"—",
+      summary:"eスポーツを活用したイベント開催のため委託事業者を公募型プロポーザル方式で募集。第2期青梅市スポーツ推進計画に基づき「こどもの居場所創出」「新たな生涯スポーツの推進」「多世代交流・共生社会」を狙いに掲げる。掲載日・提出期限・参加資格は自動取得がブロックされ機械確認できていないため、必ずブラウザで原典を開いて確認すること。",
+      url:"https://www.city.ome.tokyo.jp/site/omesports/123169.html",
+      subs:[{label:"総務契約課 プロポーザル一覧",url:"https://www.city.ome.tokyo.jp/soshiki/6/123233.html"}],
+      verify:"URLは検索インデックスで確認。締切等は未確認（要目視）"
+    },
+    {
+      id:"taku-r8-result",
+      title:"令和8年度 多久市eスポーツイベント及び体験会実施業務委託 公募型プロポーザル（審査結果公表）",
+      org:"佐賀県多久市 総合政策課企画係",
+      pref:"佐賀県", kind:"委託", status:"closed",
+      published:"2026-07-24", deadline:"2026-05-27",
+      scale:"—",
+      summary:"募集期間は令和8年5月14日〜5月27日。7月24日に審査結果（PDF）が公表された。子どもから高齢者までを対象にeスポーツ体験会を実施し市内での普及と地域活性化につなげる事業で、単年度・毎年度公募の型。次年度は5月中旬の公表が濃厚なため、4月末からの重点監視対象。",
+      url:"https://www.city.taku.lg.jp/soshiki/14/37134.html",
+      subs:[{label:"公募本体ページ",url:"https://www.city.taku.lg.jp/soshiki/14/36559.html"}],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"gunma-fes-r8",
+      title:"「ぐんまeスポーツフェス（仮称）」開催業務 公募型プロポーザル",
+      org:"群馬県 ｅスポーツ・クリエイティブ推進課",
+      pref:"群馬県", kind:"委託", status:"closed",
+      published:"2026-06-15", deadline:"2026-07-17",
+      scale:"—",
+      summary:"参加申込は令和8年6月15日〜7月17日正午。6月17日に仕様説明会を実施し、企画提案要領・仕様書・手配済み会場の参考資料を公開。群馬県はeスポーツ専任課を置く数少ない県で、フェス以外にもGUNMA LEAGUE、eスポーツ体験会キャラバンなど発注が継続的に出る。課のページを定点監視するのが効率的。",
+      url:"https://www.pref.gunma.jp/site/nyuusatsu/756825.html",
+      subs:[{label:"ｅスポーツ・クリエイティブ推進課",url:"https://www.pref.gunma.jp/soshiki/153/"}],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"osaka-daikibo-r8",
+      title:"大阪府大規模eスポーツ大会開催支援補助金（令和8年度）",
+      org:"大阪府 府民文化部都市魅力創造局魅力づくり推進課",
+      pref:"大阪府", kind:"補助金", status:"closed",
+      published:"2026-04-15", deadline:"2026-05-15",
+      scale:"—",
+      summary:"令和8年度中に開催される大規模eスポーツ大会が対象。申請受付は4月15日〜5月15日17時必着で、持参または郵送のみ（電子メール不可）。複数年度にまたがる事業は対象外。年度当初に公募が立つ型なので、次年度は3月下旬から要領公表を張っておくのが有効。",
+      url:"https://www.pref.osaka.lg.jp/o070080/e-sports_hojokin.html",
+      subs:[{label:"大阪府 eスポーツ施策トップ",url:"https://www.pref.osaka.lg.jp/o070080/e-sports.html"}],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"saitama-event-annual",
+      title:"埼玉県eスポーツイベント運営業務委託（企画提案競技）※例年8月公表枠",
+      org:"埼玉県 スポーツ振興課／県民総合スポーツ大会埼玉県実行委員会",
+      pref:"埼玉県", kind:"委託", status:"watch",
+      published:null, deadline:null,
+      scale:"—",
+      summary:"2025年度は8月18日に募集要領を公表し、質問受付8月22日、応募届9月5日、企画提案9月10日、プレゼン審査9月中旬という日程だった。イベント本体とトレーニングキャンプの2本立てで出る年もある。2026年度分は本日時点で未公表だが、例年どおりなら8月中の公表が濃厚。今週から日次で見に行く価値がある枠。",
+      url:"https://www.pref.saitama.lg.jp/a0312/esports/info.html",
+      subs:[{label:"2025年度の実施要領ページ（日程の参考）",url:"https://www.pref.saitama.lg.jp/a0312/esports/esports_event2025.html"}],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"hirokawa-community",
+      title:"eスポーツによる地域コミュニティ活性化事業業務委託 公募型プロポーザル",
+      org:"福岡県広川町",
+      pref:"福岡県", kind:"委託", status:"closed",
+      published:"2026-01-26", deadline:"2026-02-02",
+      scale:"3か年で上限9,900,000円（令和8〜10年度に各330万円）",
+      summary:"委託期間が令和8年4月1日〜令和11年3月31日の3か年という、町村規模としては珍しい複数年契約。実施要領公表1月26日、質問受付〜2月2日正午、契約締結は3月下旬。単年度の体験会案件と違い、腰を据えた運営体制を求める設計になっている。同種の複数年案件は年度末（1〜2月）に出やすい。",
+      url:"https://www.town.hirokawa.fukuoka.jp/shigoto_sangyo/nyusatsu_keiyaku/1/6607.html",
+      subs:[],
+      verify:"検索インデックスで確認（2026-07-29）※表の日付は質問受付期限"
+    },
+    {
+      id:"hakui-r7",
+      title:"令和7年度 羽咋市eスポーツ推進業務委託 公募型プロポーザル（優先交渉権者決定）",
+      org:"石川県羽咋市 産業建設部商工観光課",
+      pref:"石川県", kind:"委託", status:"closed",
+      published:null, deadline:null,
+      scale:"—",
+      summary:"単年度のeスポーツ推進業務委託で、優先交渉権者がすでに決定済み。年度ごとに立て直す型の事業とみられるため、令和8年度以降の同名案件の掲載を監視対象に入れておく。",
+      url:"https://www.city.hakui.lg.jp/soshiki/sangyoukensetsubu/syoukoukankouka/5/15517.html",
+      subs:[],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"nagaoka-event-hojo",
+      title:"eスポーツイベント等の開催経費補助",
+      org:"新潟県長岡市",
+      pref:"新潟県", kind:"補助金", status:"check",
+      published:null, deadline:null,
+      scale:"—",
+      summary:"市の「募集」カテゴリに掲載されているイベント開催経費の補助制度。対象要件・補助率・受付期間は原典での確認が必要。長岡市は市民向けの募集情報を一箇所に集約しているため、市の募集一覧ごと監視対象にすると取りこぼしが減る。",
+      url:"https://www.city.nagaoka.niigata.jp/bosyu/esports.html",
+      subs:[],
+      verify:"URLは検索インデックスで確認。要件・期間は未確認（要目視）"
+    },
+    {
+      id:"okayama-sangyo",
+      title:"岡山市eスポーツ産業振興事業補助金",
+      org:"岡山市",
+      pref:"岡山県", kind:"補助金", status:"check",
+      published:null, deadline:null,
+      scale:"—",
+      summary:"eスポーツを「産業振興」の文脈で扱う数少ない市の補助制度。イベント開催補助ではなく事業者側の産業振興を目的とする建て付けのため、他自治体の大会運営補助とは対象経費の考え方が異なる可能性がある。受付期間・対象経費は原典で確認のこと。",
+      url:"https://www.city.okayama.jp/jigyosha/0000030386.html",
+      subs:[],
+      verify:"URLは検索インデックスで確認。要件・期間は未確認（要目視）"
+    },
+    {
+      id:"yubetsu-machizukuri",
+      title:"eスポーツを通じたまちづくり（交付金活用の継続事業）",
+      org:"北海道湧別町",
+      pref:"北海道", kind:"定点", status:"watch",
+      published:null, deadline:null,
+      scale:"新しい地方経済・生活環境創生交付金を活用",
+      summary:"体験会・ワークショップ・大会の企画運営を株式会社NTTe-Sportsに業務委託して実施。高校のeスポーツ部立ち上げから始まり、機材整備・体験会・湧別e-Sportsフェスタへと段階的に広がってきた交付金ベースの継続事業。委託先が固定化している案件だが、交付金の年度更新に合わせて公募が立つ可能性があるため定点で押さえておく。",
+      url:"https://www.town.yubetsu.lg.jp/administration/town/detail.html?content=1224",
+      subs:[],
+      verify:"検索インデックスで確認（2026-07-29）"
+    },
+    {
+      id:"tokyo-epara",
+      title:"デジタル技術を活用した障害者のスポーツ参加促進事業（eパラスポーツ事業）",
+      org:"東京都 スポーツ推進本部",
+      pref:"東京都", kind:"定点", status:"watch",
+      published:null, deadline:null,
+      scale:"—",
+      summary:"参加を希望する障害者福祉施設等を募集する形式の事業で、東京eスポーツフェスタと連動した「つながる!eスポTOKYO」なども実施。事業者向けの委託公募とは別枠だが、都のeスポーツ関連予算の動きを読む上で有用な定点。募集要項は年度ごとに更新される。",
+      url:"https://www.sports-tokyo-info.metro.tokyo.lg.jp/seisaku/forthedisabled_digital.html",
+      subs:[],
+      verify:"検索インデックスで確認（2026-07-29）"
+    }
+  ],
+  sources: [
+    {k:"横断検索 / API", n:"官公需情報ポータルサイト（中小企業庁）", u:"https://www.kkj.go.jp/s/",
+     d:"国・独法・地方公共団体の入札情報を横断検索。検索APIが公開されており、キーワード「eスポーツ」等で全国分を一括取得できる。巡回の主力。"},
+    {k:"横断検索", n:"調達ポータル（デジタル庁）", u:"https://www.p-portal.go.jp/pps-web-biz/UZA01/OZA0101",
+     d:"各府省の調達案件。国発注の補完として日次で確認する。"},
+    {k:"府省", n:"スポーツ庁 公募情報", u:"https://www.mext.go.jp/sports/b_menu/boshu/index.htm",
+     d:"スポーツ産業成長促進・SOIP等。eスポーツ単独の枠は少ないが応募可能な枠が混ざる。"},
+    {k:"専任部署", n:"群馬県 ｅスポーツ・クリエイティブ推進課", u:"https://www.pref.gunma.jp/soshiki/153/",
+     d:"全国で唯一クラスのeスポーツ専任課。発注頻度が最も高い自治体のひとつ。"},
+    {k:"専任施策", n:"大阪府 eスポーツ", u:"https://www.pref.osaka.lg.jp/o070080/e-sports.html",
+     d:"大規模大会開催支援補助金など。年度当初に公募が立つ。"},
+    {k:"専任施策", n:"埼玉県 eスポーツ", u:"https://www.pref.saitama.lg.jp/a0312/esports/info.html",
+     d:"イベント／トレーニングキャンプの企画提案競技を例年夏に公表。"},
+    {k:"専任施策", n:"沖縄eスポーツ", u:"https://okinawa-e-sports.com/",
+     d:"県のeスポーツ推進関連情報。県庁ドメイン外のため横断検索に載りにくく、直接巡回が必要。"},
+    {k:"継続事業", n:"北海道湧別町 eスポーツを通じたまちづくり", u:"https://www.town.yubetsu.lg.jp/administration/town/detail.html?content=1224",
+     d:"交付金ベースの町村事例。同型の町村案件を探す際のモデルケース。"},
+    {k:"例年枠", n:"佐賀県多久市 総合政策課", u:"https://www.city.taku.lg.jp/soshiki/14/",
+     d:"eスポーツイベント・体験会実施業務を毎年度公募。令和8年度は5月14日〜5月27日募集、7月24日結果公表。4月末から重点監視。"},
+    {k:"例年枠", n:"石川県羽咋市 商工観光課", u:"https://www.city.hakui.lg.jp/soshiki/sangyoukensetsubu/syoukoukankouka/5/15517.html",
+     d:"eスポーツ推進業務委託を単年度で公募。年度ごとに立て直す型のため次年度分の掲載を監視。"},
+    {k:"例年枠", n:"福岡県広川町 入札・契約", u:"https://www.town.hirokawa.fukuoka.jp/shigoto_sangyo/nyusatsu_keiyaku/1/6607.html",
+     d:"令和8〜10年度の3か年・上限990万円で地域コミュニティ活性化事業を委託。複数年案件は1〜2月に出やすい。"},
+    {k:"参考", n:"日本eスポーツ連合（JeSU）", u:"https://jesu.or.jp/",
+     d:"全国都道府県対抗eスポーツ選手権など、自治体側の予算が立つきっかけになる動きを先読みできる。"}
+  ]
+};
+
+/* ── 表示ロジック ───────────────────────── */
+const KIND_LABEL = {"委託":"委託・プロポーザル","補助金":"補助金","国事業":"国庫事業","定点":"継続事業"};
+let DATA = SEED, filter = "all", query = "";
+
+function today(){ const d = new Date(); d.setHours(0,0,0,0); return d; }
+function daysLeft(iso){
+  if(!iso) return null;
+  const d = new Date(iso+"T00:00:00");
+  return Math.round((d - today())/86400000);
+}
+function fmt(iso){ return iso ? iso.replace(/-/g,".") : "—"; }
+
+/* 締切が過ぎていれば open → closed に自動降格。日付未確定の open は open のまま */
+function effStatus(it){
+  const dl = daysLeft(it.deadline);
+  if(it.status === "open" && dl !== null && dl < 0) return "closed";
+  return it.status;
+}
+function statusTag(it){
+  const s = effStatus(it), dl = daysLeft(it.deadline);
+  if(s === "open") return (dl !== null && dl <= 14) ? ["t-soon","締切間近"] : ["t-open","受付中"];
+  if(s === "check") return ["t-check","要確認"];
+  if(s === "watch") return ["t-soon","例年枠"];
+  return ["t-closed","受付終了"];
+}
+
+/* ── 保持期間：受付終了から30日を過ぎた案件はポータルに載せない ────────
+   落とすのは「終了扱い」の案件のみ。受付中・要確認・例年枠・定点は対象外。
+   終了扱いなのに日付の手がかりが一切無いものは、現在動いている確証が
+   取れないため落とす（collector 側で archive.json に退避される）。 */
+const RETENTION_DAYS = 30;
+let LIVE = [], PURGED = 0;
+
+function endRef(it){ return it.deadline || it.published || null; }
+function isExpired(it){
+  if(it.kind === "定点") return false;
+  if(effStatus(it) !== "closed") return false;
+  const ref = endRef(it);
+  if(!ref) return true;
+  return daysLeft(ref) < -RETENTION_DAYS;
+}
+function refreshLive(){
+  PURGED = DATA.items.filter(isExpired).length;
+  LIVE = DATA.items.filter(it => !isExpired(it));
+}
+
+function renderBoard(){
+  const el = document.getElementById("board");
+  const rows = LIVE
+    .filter(it => effStatus(it) === "open" && it.deadline)
+    .sort((a,b) => a.deadline.localeCompare(b.deadline));
+  if(!rows.length){
+    el.innerHTML = '<div class="board-empty">締切日が確定している受付中の案件はありません。下の「例年枠」「要確認」を確認してください。</div>';
+    return;
+  }
+  el.innerHTML = rows.map(it => {
+    const d = daysLeft(it.deadline);
+    return `<a class="brow" href="${it.url}" target="_blank" rel="noopener">
+      <span class="days ${d<=14?"warn":""}"><b>${d}</b><i>DAYS</i></span>
+      <span><span class="bttl">${it.title}</span><span class="borg">${it.org}</span></span>
+      <span class="bdate">締切 ${fmt(it.deadline)}</span>
+    </a>`;
+  }).join("");
+}
+
+function renderTopics(){
+  const t = [];
+  const soon = LIVE.filter(it => effStatus(it)==="open" && daysLeft(it.deadline)!==null && daysLeft(it.deadline)<=30)
+                         .sort((a,b)=>a.deadline.localeCompare(b.deadline))[0];
+  if(soon) t.push({c:"watch", e:"締切 30日以内", h:soon.title,
+    p:`${soon.org}／締切 ${fmt(soon.deadline)}（残り${daysLeft(soon.deadline)}日）`, u:soon.url});
+
+  const newest = LIVE.filter(it => it.published)
+    .sort((a,b)=>b.published.localeCompare(a.published))[0];
+  if(newest) t.push({c:"new", e:"最新の掲載", h:newest.title,
+    p:`${newest.org}／${fmt(newest.published)} 掲載`, u:newest.url});
+
+  const watch = LIVE.filter(it => it.status==="watch" && it.kind!=="定点")[0];
+  if(watch) t.push({c:"", e:"公表待ち（例年枠）", h:watch.title,
+    p:"昨年度と同じ日程なら今月中に要領が公表される見込み。日次で確認中。", u:watch.url});
+
+  const check = LIVE.filter(it => it.status==="check").length;
+  if(check) t.push({c:"", e:"要確認", h:`原典で締切の確認が必要な案件が ${check} 件`,
+    p:"自動取得が拒否された、または期限がページ上に明示されていない案件。下の一覧で「要確認」で絞り込めます。", u:null});
+
+  document.getElementById("topics").innerHTML = t.map(x => `
+    <div class="topic ${x.c}">
+      <span class="eyebrow">${x.e}</span>
+      <h3>${x.h}</h3>
+      <p>${x.p}</p>
+      ${x.u?`<a href="${x.u}" target="_blank" rel="noopener">公募ページを開く →</a>`:""}
+    </div>`).join("");
+}
+
+function renderList(){
+  const items = LIVE
+    .filter(it => {
+      const s = effStatus(it);
+      if(filter==="open")   return s==="open";
+      if(filter==="check")  return s==="check";
+      if(filter==="watch")  return s==="watch";
+      if(filter==="closed") return s==="closed";
+      return true;
+    })
+    .filter(it => !query || (it.title+it.org+it.pref+it.summary).toLowerCase().includes(query))
+    .sort((a,b) => (b.published||"0000-00-00").localeCompare(a.published||"0000-00-00"));
+
+  document.getElementById("count").textContent =
+    `${items.length} 件を新しい順に表示（掲載日不明の案件は末尾）`
+    + (PURGED ? `　／　受付終了から30日を過ぎた ${PURGED} 件は掲載対象外` : "");
+
+  document.getElementById("list").innerHTML = items.map(it => {
+    const [cls,label] = statusTag(it);
+    const dl = daysLeft(it.deadline);
+    return `<li class="item">
+      <div class="meta">
+        <span class="tag ${cls}">${label}</span>
+        <span class="tag t-kind">${KIND_LABEL[it.kind]||it.kind}</span>
+        <span>${it.pref}</span>
+        <span>掲載 ${fmt(it.published)}</span>
+        ${it.deadline?`<span>締切 ${fmt(it.deadline)}${dl!==null&&dl>=0?`（残り${dl}日）`:""}</span>`:""}
+      </div>
+      <h3>${it.title}</h3>
+      <div class="org">${it.org}</div>
+      <p class="sum">${it.summary}</p>
+      ${it.scale && it.scale!=="—" ? `<dl class="facts"><dt>規模</dt><dd>${it.scale}</dd></dl>` : ""}
+      <div class="links">
+        <a href="${it.url}" target="_blank" rel="noopener">${it.url}</a>
+        ${it.subs.map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.label}</a>`).join("")}
+      </div>
+      <div class="links"><span class="verify">リンク確認：${it.verify}</span></div>
+    </li>`;
+  }).join("");
+}
+
+function renderSources(){
+  document.getElementById("srcs").innerHTML = DATA.sources.map(s => `
+    <li><span class="k">${s.k}</span>
+      <a href="${s.u}" target="_blank" rel="noopener">${s.n}</a>
+      <em>${s.d}</em>
+    </li>`).join("");
+}
+
+function renderHowto(){
+  document.getElementById("howto").innerHTML = `
+    <b>毎日 01:00（JST）に自動巡回。</b> 収集は3段構えです。<br>
+    ① 官公需情報ポータルサイトの検索APIに「eスポーツ / eSports / ｅスポーツ」等の表記ゆれを投げ、全国の入札・公募を一括取得（1リクエストで最大1,000件）。<br>
+    ② APIに載らない補助金・プロポーザルを、上の定点監視ソースから直接取得。<br>
+    ③ 取得した参考URLに順次アクセスし、HTTP 200 が返るものだけを掲載。落ちたリンクは自動で「要確認」に降格。<br>
+    ④ <b>受付終了から30日を過ぎた案件は掲載対象から外し、<code>archive.json</code> に退避します。</b>
+    現在動いている案件だけを残すためですが、過去案件は消さずに保管します。「例年この時期に出る枠」を
+    言い当てるには前年の日程が要るためです。定点監視先は終了判定の対象外なので常に残ります。<br>
+    処理結果は <code>data.json</code> として書き出され、このページは読み込み時にそれを優先表示します。
+    <code>data.json</code> が無い場合は内蔵の初期データを表示します（現在の状態は右上に表示）。`;
+}
+
+function renderAll(){
+  refreshLive();
+  document.getElementById("updated").textContent = fmt(DATA.updated);
+  renderBoard(); renderTopics(); renderList(); renderSources(); renderHowto();
+}
+
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed","false"));
+  b.setAttribute("aria-pressed","true");
+  filter = b.dataset.f; renderList();
+}));
+document.getElementById("q").addEventListener("input", e => {
+  query = e.target.value.trim().toLowerCase(); renderList();
+});
+
+/* collector が出力した data.json があればそちらを使う */
+fetch("data.json", {cache:"no-store"})
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(j => { DATA = j; document.getElementById("src-mode").textContent = "data.json（自動更新）"; renderAll(); })
+  .catch(() => { document.getElementById("src-mode").textContent = "内蔵初期データ"; });
+
+renderAll();
+</script>
