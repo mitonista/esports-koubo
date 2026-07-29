@@ -33,7 +33,7 @@ ARCHIVE = Path(__file__).with_name("archive.json")
 # 受付終了から何日で掲載対象から外すか
 RETENTION_DAYS = 30
 
-UA = "esports-koubo-radar/1.0 (+contact: takuma.kumamoto@sports-it.jp)"
+UA = "esports-koubo-radar/1.0 (+contact: your-mail@example.com)"
 KKJ_API = "http://www.kkj.go.jp/api/"
 
 # 表記ゆれ。全角ｅ・カタカナ・英字を網羅する。
@@ -140,19 +140,32 @@ def parse_deadline(text: str):
     return (max(future) if future else max(found)).isoformat()
 
 
-def link_alive(url: str) -> bool:
-    """掲載前の生存確認。要件『必ず有効なリンクであることを確認』の実装部分。"""
+def link_alive(url: str):
+    """掲載前の生存確認。戻り値は "alive" / "blocked" / "dead"。
+
+    自治体サイトは自動アクセスを 403 で弾くところが多い。
+    「弾かれた」と「ページが消えた」は別物なので、区別せずに落とすと
+    生きている案件まで消える。403/405/406/429 は blocked として残す。
+    """
     if not url or not url.startswith("http"):
-        return False
+        return "dead"
+    last = "dead"
     for method in ("HEAD", "GET"):
         try:
             req = urllib.request.Request(url, method=method, headers={"User-Agent": UA})
             with urllib.request.urlopen(req, timeout=15) as r:
                 if 200 <= r.status < 400:
-                    return True
+                    return "alive"
+        except urllib.error.HTTPError as e:
+            if e.code in (403, 405, 406, 429):
+                last = "blocked"      # 生きているがロボットを拒否している
+            elif e.code in (404, 410):
+                return "dead"         # 確実に消えている
+            else:
+                last = "blocked"
         except Exception:
-            continue
-    return False
+            last = "blocked"          # 通信エラーは判断保留。落とさない
+    return last
 
 
 def is_expired(item, today: dt.date) -> bool:
@@ -215,6 +228,26 @@ def build_item(rec, verified_note):
     }
 
 
+def build_sources(curated):
+    """定点監視ソース一覧。手書きの説明があればそれを使い、無いものだけ自動で補う。"""
+    out = list(curated)
+    have = {s["u"] for s in out}
+    fallback = [
+        {"k": "横断検索 / API", "n": "官公需情報ポータルサイト（中小企業庁）",
+         "u": "https://www.kkj.go.jp/s/",
+         "d": "国・独法・地方公共団体の入札情報を横断検索。検索APIで全国分を一括取得できる。巡回の主力。"},
+        {"k": "横断検索", "n": "調達ポータル（デジタル庁）",
+         "u": "https://www.p-portal.go.jp/pps-web-biz/UZA01/OZA0101",
+         "d": "各府省の調達案件。国発注の補完。"},
+    ] + [{"k": "定点", "n": n, "u": u, "d": f"{p}のeスポーツ施策ページ。"}
+         for n, p, u in FIXED_SOURCES]
+    for s in fallback:
+        if s["u"] not in have:
+            out.append(s)
+            have.add(s["u"])
+    return out
+
+
 def main():
     today = dt.date.today()
     since = (today - dt.timedelta(days=180)).isoformat()
@@ -236,39 +269,54 @@ def main():
     print(f"  重複除去後 {len(hits)} 件")
 
     # ── 2. リンク生存確認 ──────────────────────────
-    items, dead = [], 0
-    stamp = f"HTTP確認済（{today}）"
+    items, dead, blocked = [], 0, 0
     for r in hits:
-        if link_alive(r["url"]):
-            items.append(build_item(r, stamp))
-        else:
+        state = link_alive(r["url"])
+        if state == "dead":
             dead += 1
+        else:
+            note = (f"HTTP確認済（{today}）" if state == "alive"
+                    else f"自動確認不可・要目視（{today}）")
+            items.append(build_item(r, note))
+            blocked += state == "blocked"
         time.sleep(0.4)
-    print(f"  リンク生存 {len(items)} 件 / 落ちていたもの {dead} 件")
+    print(f"  掲載可 {len(items)} 件（うち自動確認不可 {blocked} 件）/ リンク切れ {dead} 件")
 
     # ── 3. 定点ソースをマージ ──────────────────────
     existing = {i["url"] for i in items}
     for name, pref, url in FIXED_SOURCES:
         if url in existing:
             continue
-        if not link_alive(url):
-            print(f"  ! 定点ソース到達不可: {url}", file=sys.stderr)
+        state = link_alive(url)
+        if state == "dead":
+            print(f"  ! 定点ソースが消えている: {url}", file=sys.stderr)
             continue
         items.append({
             "id": url, "title": name, "org": name, "pref": pref,
             "kind": "定点", "status": "watch",
             "published": None, "deadline": None, "scale": "—",
             "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
-            "url": url, "subs": [], "verify": stamp,
+            "url": url, "subs": [],
+            "verify": (f"HTTP確認済（{today}）" if state == "alive"
+                       else f"自動確認不可・要目視（{today}）"),
         })
 
     # ── 4. 手動キュレーション分を上書きマージ ──────
+    # ここが要。seed.json が無いと、手で書いた要約・定点ソースの説明が
+    # すべて自動生成の素っ気ない文面に置き換わる。必ずリポジトリに置くこと。
+    curated_sources = []
     if SEED.exists():
         curated = json.loads(SEED.read_text(encoding="utf-8"))
         by_url = {i["url"]: i for i in items}
         for c in curated.get("items", []):
             by_url[c["url"]] = c          # 手で書いた要約を優先
         items = list(by_url.values())
+        curated_sources = curated.get("sources", [])
+        print(f"  seed.json を反映：案件 {len(curated.get('items', []))} 件 / "
+              f"監視ソース {len(curated_sources)} 件")
+    else:
+        print("  ! seed.json が見つかりません。手書きの要約は反映されません。",
+              file=sys.stderr)
 
     # ── 5. 受付終了から30日超を掲載対象から外す ───
     expired = [i for i in items if is_expired(i, today)]
@@ -294,14 +342,7 @@ def main():
     data = {
         "updated": today.isoformat(),
         "items": items,
-        "sources": [
-            {"k": "横断検索 / API", "n": "官公需情報ポータルサイト（中小企業庁）",
-             "u": "https://www.kkj.go.jp/s/",
-             "d": "国・独法・地方公共団体の入札情報を横断検索。検索APIで全国分を一括取得できる。巡回の主力。"},
-            {"k": "横断検索", "n": "調達ポータル（デジタル庁）",
-             "u": "https://www.p-portal.go.jp/pps-web-biz/UZA01/OZA0101",
-             "d": "各府省の調達案件。国発注の補完。"},
-        ] + [{"k": "定点", "n": n, "u": u, "d": f"{p}のeスポーツ施策ページ。"} for n, p, u in FIXED_SOURCES],
+        "sources": build_sources(curated_sources),
     }
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"== 書き出し完了: {OUT} / 全{len(items)}件 ==")
