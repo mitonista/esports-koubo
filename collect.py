@@ -33,7 +33,7 @@ ARCHIVE = Path(__file__).with_name("archive.json")
 # 受付終了から何日で掲載対象から外すか
 RETENTION_DAYS = 30
 
-UA = "esports-koubo-radar/1.0 (+contact: takuma.kumamoto@sports-it.jp)"
+UA = "esports-koubo-radar/1.0 (+contact: es-payment@sports-it.jp)"
 KKJ_API = "http://www.kkj.go.jp/api/"
 
 # 表記ゆれ。全角ｅ・カタカナ・英字を網羅する。
