@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-02",
+  "updated": "2026-08-03",
   "items": [
     {
       "id": "mext-soip-r8",
@@ -62,21 +62,6 @@
       "verify": "検索インデックスで確認（2026-07-29）"
     },
     {
-      "id": "a3VtYW1vdG8va2lrdWNoaV9jaXR5LzIwMjYvMjAyNjAyMDNfMDAwMDMK",
-      "title": "【条件付一般競争入札】令和8年度広報きくち作成業務委託",
-      "org": "熊本県菊池市",
-      "pref": "熊本県",
-      "kind": "補助金",
-      "status": "open",
-      "published": "2026-02-03",
-      "deadline": "2028-03-31",
-      "scale": "—",
-      "summary": "【条件付一般競争入札】令和8年度広報きくち作成業務委託 条件付一般競争入札フロー図※正午まで2月18日(予定)3月6日(予定)5日以内資格あり資格なし 理由の説明の請求※２ 入札公告及び質疑回答はHPに掲載する。 ※３ 郵便物の土日祝日の取扱いについては最寄りの郵便局に相談してください。 7日以内指名審査会 理由の説明報告※1 土日祝日及び12月29日から1月3日までは日数に含めない。 3月3日 事後審査資料提出/事後審査5日以内 5日以内落札決定通知 競争参加資格がないと認めた通知質疑事項の回答2月19日～2月26日入札書受付期間2月27日 開札入札公告2月13日 仕様書等の質疑事項の締切 令和８年度広報きくち作成業務委託仕様書１",
-      "url": "https://www.city.kikuchi.lg.jp/d?q=ac539ca1bbea712ff47d0c1cd1b57c23.pdf",
-      "subs": [],
-      "verify": "HTTP確認済（2026-08-02）"
-    },
-    {
       "id": "https://www.pref.gunma.jp/soshiki/153/",
       "title": "群馬県 ｅスポーツ・クリエイティブ推進課",
       "org": "群馬県 ｅスポーツ・クリエイティブ推進課",
@@ -89,7 +74,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.pref.gunma.jp/soshiki/153/",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-02）"
+      "verify": "HTTP確認済（2026-08-03）"
     },
     {
       "id": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
@@ -104,7 +89,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-02）"
+      "verify": "HTTP確認済（2026-08-03）"
     },
     {
       "id": "saitama-event-annual",
@@ -139,7 +124,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://okinawa-e-sports.com/",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-02）"
+      "verify": "HTTP確認済（2026-08-03）"
     },
     {
       "id": "yubetsu-machizukuri",
@@ -169,7 +154,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.mext.go.jp/sports/b_menu/boshu/index.htm",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-02）"
+      "verify": "HTTP確認済（2026-08-03）"
     },
     {
       "id": "okayama-sangyo",
