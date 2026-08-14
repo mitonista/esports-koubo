@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13",
+  "updated": "2026-08-14",
   "items": [
     {
       "id": "mext-soip-r8",
@@ -74,7 +74,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.pref.gunma.jp/soshiki/153/",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-13）"
+      "verify": "HTTP確認済（2026-08-14）"
     },
     {
       "id": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
@@ -89,7 +89,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-13）"
+      "verify": "HTTP確認済（2026-08-14）"
     },
     {
       "id": "saitama-event-annual",
@@ -124,7 +124,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://okinawa-e-sports.com/",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-13）"
+      "verify": "HTTP確認済（2026-08-14）"
     },
     {
       "id": "yubetsu-machizukuri",
@@ -154,7 +154,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.mext.go.jp/sports/b_menu/boshu/index.htm",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-13）"
+      "verify": "HTTP確認済（2026-08-14）"
     },
     {
       "id": "okayama-sangyo",
