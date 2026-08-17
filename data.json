@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16",
+  "updated": "2026-08-17",
   "items": [
     {
       "id": "mext-soip-r8",
@@ -42,26 +42,6 @@
       "verify": "本文取得で確認（2026-07-29）"
     },
     {
-      "id": "gunma-fes-r8",
-      "title": "「ぐんまeスポーツフェス（仮称）」開催業務 公募型プロポーザル",
-      "org": "群馬県 ｅスポーツ・クリエイティブ推進課",
-      "pref": "群馬県",
-      "kind": "委託",
-      "status": "closed",
-      "published": "2026-06-15",
-      "deadline": "2026-07-17",
-      "scale": "—",
-      "summary": "参加申込は令和8年6月15日〜7月17日正午。6月17日に仕様説明会を実施し、企画提案要領・仕様書・手配済み会場の参考資料を公開。群馬県はeスポーツ専任課を置く数少ない県で、フェス以外にもGUNMA LEAGUE、eスポーツ体験会キャラバンなど発注が継続的に出る。課のページを定点監視するのが効率的。",
-      "url": "https://www.pref.gunma.jp/site/nyuusatsu/756825.html",
-      "subs": [
-        {
-          "label": "ｅスポーツ・クリエイティブ推進課",
-          "url": "https://www.pref.gunma.jp/soshiki/153/"
-        }
-      ],
-      "verify": "検索インデックスで確認（2026-07-29）"
-    },
-    {
       "id": "https://www.pref.gunma.jp/soshiki/153/",
       "title": "群馬県 ｅスポーツ・クリエイティブ推進課",
       "org": "群馬県 ｅスポーツ・クリエイティブ推進課",
@@ -74,7 +54,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.pref.gunma.jp/soshiki/153/",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-16）"
+      "verify": "HTTP確認済（2026-08-17）"
     },
     {
       "id": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
@@ -89,7 +69,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.pref.osaka.lg.jp/o070080/e-sports.html",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-16）"
+      "verify": "HTTP確認済（2026-08-17）"
     },
     {
       "id": "saitama-event-annual",
@@ -124,7 +104,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://okinawa-e-sports.com/",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-16）"
+      "verify": "自動確認不可・要目視（2026-08-17）"
     },
     {
       "id": "yubetsu-machizukuri",
@@ -154,7 +134,7 @@
       "summary": "eスポーツ施策の定点監視先。横断検索APIに載らない補助金・プロポーザルはここから拾う。",
       "url": "https://www.mext.go.jp/sports/b_menu/boshu/index.htm",
       "subs": [],
-      "verify": "HTTP確認済（2026-08-16）"
+      "verify": "HTTP確認済（2026-08-17）"
     },
     {
       "id": "okayama-sangyo",
